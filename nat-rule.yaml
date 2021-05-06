@@ -1,0 +1,97 @@
+- Name: ADVR-AWS-OUT-TEST
+  source-translation:
+    dynamic-ip-and-port:
+      translated-address:
+        member:
+        - 100.103.29.1/32
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - PROXY-OR
+  source:
+    member:
+    - ADVR-AWS
+  destination:
+    member:
+    - 10.64.120.13/32
+  tag:
+    member:
+    - GREEN-4611
+    - CLOUD-4550
+  service: any
+  group-tag: GREEN-4611
+  description: .nan
+  dynamic-destination-translation: .nan
+  destination-translation:
+    translated-address: ADVR-AWS-TEST
+  nat-type: ipv4
+  to-interface: .nan
+  disabled: .nan
+- Name: ADVR-CUST-TO-AWS-DEV-REPORT
+  FwUuid: d221d395-27d2-4420-a356-04902ac482e8
+  '@location': vsys
+  '@vsys': vsys1
+  source-translation:
+    dynamic-ip-and-port:
+      translated-address:
+        member:
+        - 10.64.120.121/32
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - ADVR-CUST
+  source:
+    member:
+    - any
+  destination:
+    member:
+    - 100.103.29.190/32
+  tag:
+    member:
+    - SP#43201
+  service: any
+  group-tag: SP#43201
+  description: .nan
+  dynamic-destination-translation: .nan
+  destination-translation:
+    translated-address: ADVR-DEV-REPORT
+  nat-type: .nan
+  to-interface: .nan
+  disabled: .nan
+- Name: ADVR-CUST-TO-AWS-MODEL
+  FwUuid: 8b14b420-b96b-4fea-9073-ae14857beead
+  '@location': vsys
+  '@vsys': vsys1
+  source-translation:
+    dynamic-ip-and-port:
+      translated-address:
+        member:
+        - 10.64.120.121/32
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - ADVR-CUST
+  source:
+    member:
+    - ADVR-HQ
+  destination:
+    member:
+    - 100.103.29.11/32
+  tag:
+    member:
+    - CLOUD-15228
+  service: any
+  group-tag: CLOUD-15228
+  description: .nan
+  dynamic-destination-translation:
+    translated-address: ADVR-Model
+  destination-translation: .nan
+  nat-type: .nan
+  to-interface: .nan
+  disabled: .nan

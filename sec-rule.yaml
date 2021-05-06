@@ -1,0 +1,472 @@
+- Name: ADVR-IN-DEV-REPORT
+  FwUuid: 70ad6bf4-503a-4b61-bff7-ee2d14ebdab6
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - ADVR-CUST
+  source:
+    member:
+    - any
+  destination:
+    member:
+    - 100.103.29.190/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - icmp
+    - mysql
+    - ping
+  service:
+    member:
+    - application-default
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - SP#43201
+    - CLOUD-4550
+  action: allow
+  group-tag: SP#43201
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: ADVR-IN-MODEL
+  FwUuid: 50a4dd73-712b-4717-ad75-0388d89ce061
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - ADVR-CUST
+  source:
+    member:
+    - ADVR-HQ
+  destination:
+    member:
+    - 100.103.29.11/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - icmp
+    - mysql
+    - ping
+  service:
+    member:
+    - application-default
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - CLOUD-15228
+  action: allow
+  group-tag: GREEN-4744
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: ADVR-IN-PROD-REPORT
+  FwUuid: d6f980a3-cc1a-46e8-83af-c93f7445f3cb
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - ADVR-CUST
+  source:
+    member:
+    - ADVR-HQ
+  destination:
+    member:
+    - 100.103.29.10/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - icmp
+    - mysql
+    - ping
+  service:
+    member:
+    - application-default
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - GREEN-4744
+    - CLOUD-4550
+  action: allow
+  group-tag: GREEN-4744
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: ADVR-IN-RDS
+  FwUuid: 7346fb39-8068-4e24-bbdb-dca62321b3b6
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - ADVR-CUST
+  source:
+    member:
+    - ADVR-HQ
+  destination:
+    member:
+    - 100.103.29.190/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - any
+  service:
+    member:
+    - tcp-3306
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - GREEN-4611
+    - CLOUD-4550
+  action: allow
+  group-tag: GREEN-4611
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: ADVR-OUT
+  FwUuid: a751673e-3cd2-420d-bf39-3fe8a9ff0cee
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - ADVR-CUST
+  from:
+    member:
+    - PROXY-OR
+  source:
+    member:
+    - ADVR-AWS
+  destination:
+    member:
+    - 10.64.120.11/32
+    - 10.64.120.13/32
+    - 10.64.120.14/32
+    - 10.64.120.15/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - icmp
+    - lpd
+    - ping
+  service:
+    member:
+    - any
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - SP#41244
+    - GREEN-4611
+    - GREEN-6588
+    - CLOUD-4550
+  action: allow
+  group-tag: SP#41244
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: ADVR-OUT-WEB-8200
+  FwUuid: 3776731e-e26a-4600-8de6-6c6e3d063832
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - ADVR-CUST
+  from:
+    member:
+    - PROXY-OR
+  source:
+    member:
+    - ADVR-AWS
+  destination:
+    member:
+    - 10.64.120.12/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - any
+  service:
+    member:
+    - tcp-8200
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - GREEN-3295
+    - CLOUD-4550
+  action: allow
+  group-tag: GREEN-3295
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: AFI-AWS-TO-CUST
+  FwUuid: 3be0abaf-902c-40ee-828e-b3450b7c9332
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - AFI-CUST
+  from:
+    member:
+    - PROXY-OR
+  source:
+    member:
+    - 10.64.166.0/24
+    - 10.64.167.0/24
+  destination:
+    member:
+    - 10.64.120.11/32
+    - 10.64.120.12/32
+    - 10.64.120.13/32
+    - 10.64.120.14/32
+    - 10.64.120.15/32
+    - 10.64.120.16/32
+    - 10.64.120.17/32
+    - 10.64.120.18/32
+    - 10.64.120.19/32
+    - 10.64.120.20/32
+    - 10.64.120.21/32
+    - 10.64.120.22/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - ftp
+    - icmp
+    - lpd
+    - ping
+    - soap
+    - web-browsing
+  service:
+    member:
+    - any
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - SP#42834
+    - GREEN-1866
+    - GREEN-4262
+  action: allow
+  group-tag: SP#42834
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: AFI-AWS-TO-CUST-TEST
+  FwUuid: 46279840-8ca6-4ad2-ab39-094af8933087
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - AFI-CUST
+  from:
+    member:
+    - PROXY-OR
+  source:
+    member:
+    - 10.64.166.0/24
+    - 10.64.167.0/24
+  destination:
+    member:
+    - 10.64.120.11/32
+    - 10.64.120.12/32
+    - 10.64.120.13/32
+    - 10.64.120.14/32
+    - 10.64.120.15/32
+    - 10.64.120.16/32
+    - 10.64.120.17/32
+    - 10.64.120.18/32
+    - 10.64.120.19/32
+    - 10.64.120.20/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - any
+  service:
+    member:
+    - any
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - SP#43427
+  action: allow
+  group-tag: SP#43427
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: AFI-CUST-TO-AWS-DEV-REPORT
+  FwUuid: 7883ad7f-cda6-4efa-8520-3b4b8fe19e41
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - AFI-CUST
+  source:
+    member:
+    - any
+  destination:
+    member:
+    - 100.103.2.10/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - icmp
+    - mysql
+    - ping
+  service:
+    member:
+    - application-default
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - SP#42715
+  action: allow
+  group-tag: SP#42715
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan
+- Name: AFI-CUST-TO-AWS-PROBE
+  FwUuid: 067c002d-0668-490e-a17d-8f2827f877eb
+  '@location': vsys
+  '@vsys': vsys1
+  to:
+    member:
+    - PROXY-OR
+  from:
+    member:
+    - AFI-CUST
+  source:
+    member:
+    - any
+  destination:
+    member:
+    - 100.103.2.11/32
+  source-user:
+    member:
+    - any
+  category:
+    member:
+    - any
+  application:
+    member:
+    - icmp
+    - ping
+    - ssh
+  service:
+    member:
+    - application-default
+  hip-profiles:
+    member:
+    - any
+  tag:
+    member:
+    - SP#42939
+    - SP#43700
+  action: allow
+  group-tag: SP#42939
+  log-setting: SecopsNlb
+  rule-type: .nan
+  description: .nan
+  log-start: .nan
+  disabled: .nan
+  negate-source: .nan

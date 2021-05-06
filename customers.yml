@@ -1,0 +1,91 @@
+- Name: acme
+  ProductA:
+  - dev
+- Name: advr
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - orfw01
+- Name: afi
+  ProductB:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - oredge01
+    - orfw01
+- Name: aiig
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - oredge01
+    - orfw01
+    - vafw01
+- Name: amica
+  ProductB:
+  - dev
+  - perf
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - amica02
+    - amica01
+- Name: anc
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - oredge01
+    - orfw01
+- Name: armc
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - orfw01
+- Name: bmic
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - oredge01
+    - orfw01
+- Name: cemic
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - orfw01
+- Name: clem
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - irfw01
+- Name: cnic
+  ProductA:
+  - dev
+  - preprod
+  - prod
+  Netops:
+    Fw:
+    - orfw01
+    - oredge01
