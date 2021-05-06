@@ -44,15 +44,74 @@ def name_page(name):
 def fw_page(name, fw):
     with open('nat-rule.yaml', 'r') as file:
         parsed_yaml_file = yaml.load(file, Loader=yaml.FullLoader)
-    nut_rule = []
-    nut_rule.append(parsed_yaml_file[0]['Name'])
-    nut_rule.append(parsed_yaml_file[0]['source-translation']['dynamic-ip-and-port']['translated-address']['member'][0])
-    nut_rule.append(parsed_yaml_file[0]['source']['member'][0])
-    nut_rule.append(parsed_yaml_file[0]['destination']['member'][0])
-    nut_rule.append(parsed_yaml_file[0]['service'])
-    nut_rule.append(parsed_yaml_file[0]['destination-translation']['translated-address'])
+    nat_rules = []
+    
+    for rule in parsed_yaml_file:
+        nested_rule = []
+        try:
+            nested_rule.append(rule['Name'])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['source-translation']['dynamic-ip-and-port']['translated-address']['member'][0])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['source']['member'][0])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['destination']['member'][0])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['service'])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['destination-translation']['translated-address'])
+        except:
+            nested_rule.append('')
+        nat_rules.append(nested_rule)
 
-    return render_template('firewell_info.html', nut_rule=nut_rule)
+
+
+    with open('sec-rule.yaml', 'r') as file:
+        parsed_yaml_file = yaml.load(file, Loader=yaml.FullLoader)
+    sec_rules = []
+    
+    for rule in parsed_yaml_file:
+        nested_rule = []
+        try:
+            nested_rule.append(rule['Name'])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['source']['member'][0])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['destination']['member'][0])
+        except:
+            nested_rule.append('')
+        try:
+            app_string = "| "
+            for app in rule['application']['member']:
+                app_string += app + ' | '
+            nested_rule.append(app_string)
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['service']['member'][0])
+        except:
+            nested_rule.append('')
+        try:
+            nested_rule.append(rule['action'])
+        except:
+            nested_rule.append('')
+        sec_rules.append(nested_rule)
+
+    return render_template('firewell_info.html', nat_rules=nat_rules, sec_rules=sec_rules)
 
 if __name__ == "__main__":
     fw_app.run(debug=True)

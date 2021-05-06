@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        h2 {
+            text-align: center;
+        }
+        table {
+            margin: auto;
+            margin-bottom: 100px;
+            text-align: center;
+        }
         td,
         th {
             padding: 1rem;
@@ -13,7 +21,8 @@
     </style>
 </head>
 <body>
-    <table border="1" style="margin:auto;text-align: center;">
+    <h2>Nat Rules:</h2>
+    <table border="1">
         <tr>
             <th>Name</th>
             <th>Source-translation</th>
@@ -22,14 +31,41 @@
             <th>member destination-translation</th>
             <th>translated-address </th>
         </tr>
+
+        {% for rule in nat_rules %}
+            <tr>
+                <td>{{ rule[0] }}</td>
+                <td>{{ rule[1] }}</td>
+                <td>{{ rule[2] }}</td>
+                <td>{{ rule[3] }}</td>
+                <td>{{ rule[4] }}</td>
+                <td>{{ rule[5] }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <h2>Sec Rules:</h2>
+    <table border="1">
         <tr>
-            <td>{{ nut_rule[0] }}</td>
-            <td>{{ nut_rule[1] }}</td>
-            <td>{{ nut_rule[2] }}</td>
-            <td>{{ nut_rule[3] }}</td>
-            <td>{{ nut_rule[4] }}</td>
-            <td>{{ nut_rule[5] }}</td>
+            <th>Name</th>
+            <th>Source member</th>
+            <th>destination member</th>
+            <th>application member</th>
+            <th>service member</th>
+            <th>action</th>
         </tr>
+
+        {% for rule in sec_rules %}
+            <tr>
+                <td>{{ rule[0] }}</td>
+                <td>{{ rule[1] }}</td>
+                <td>{{ rule[2] }}</td>
+                <td>{{ rule[3] }}</td>
+                <td>{{ rule[4] }}</td>
+                <td>{{ rule[5] }}</td>
+            </tr>
+        {% endfor %}
+        
     </table>
 </body>
 </html>
