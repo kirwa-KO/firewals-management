@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        td,
+        th {
+            padding: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <table border="1" style="margin:auto;">
+    <table border="1" style="margin:auto;text-align: center;">
         <tr>
             <th>Name</th>
             <th>Source-translation</th>
@@ -17,7 +23,12 @@
             <th>translated-address </th>
         </tr>
         <tr>
-            
+            <td>{{ nut_rule[0] }}</td>
+            <td>{{ nut_rule[1] }}</td>
+            <td>{{ nut_rule[2] }}</td>
+            <td>{{ nut_rule[3] }}</td>
+            <td>{{ nut_rule[4] }}</td>
+            <td>{{ nut_rule[5] }}</td>
         </tr>
     </table>
 </body>

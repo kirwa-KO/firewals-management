@@ -51,7 +51,6 @@ def fw_page(name, fw):
     nut_rule.append(parsed_yaml_file[0]['destination']['member'][0])
     nut_rule.append(parsed_yaml_file[0]['service'])
     nut_rule.append(parsed_yaml_file[0]['destination-translation']['translated-address'])
-    nut_rule.append(parsed_yaml_file[0])
 
     return render_template('firewell_info.html', nut_rule=nut_rule)
 
