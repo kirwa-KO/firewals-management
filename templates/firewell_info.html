@@ -1,71 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        h2 {
-            text-align: center;
-        }
-        table {
-            margin: auto;
-            margin-bottom: 100px;
-            text-align: center;
-        }
-        td,
-        th {
-            padding: 1rem;
-        }
-    </style>
-</head>
-<body>
-    <h2>Nat Rules:</h2>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Source-translation</th>
-            <th>member source</th>
-            <th>member destination</th>
-            <th>member destination-translation</th>
-            <th>translated-address </th>
-        </tr>
+{% extends 'base.html' %}
+{% block body %}
+	<h2>Sec Rules:</h2>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Source member</th>
+			<th>destination member</th>
+			<th>application member</th>
+			<th>service member</th>
+			<th>action</th>
+		</tr>
 
-        {% for rule in nat_rules %}
-            <tr>
-                <td>{{ rule[0] }}</td>
-                <td>{{ rule[1] }}</td>
-                <td>{{ rule[2] }}</td>
-                <td>{{ rule[3] }}</td>
-                <td>{{ rule[4] }}</td>
-                <td>{{ rule[5] }}</td>
-            </tr>
-        {% endfor %}
+		{% for rule in sec_rules %}
+			<tr>
+				<td>{{ rule[0] }}</td>
+				<td>{{ rule[1] }}</td>
+				<td>{{ rule[2] }}</td>
+				<td>{{ rule[3] }}</td>
+				<td>{{ rule[4] }}</td>
+				<td>{{ rule[5] }}</td>
+			</tr>
+		{% endfor %}
+		
+	</table>
+	<h2>Nat Rules:</h2>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Source-translation</th>
+			<th>member source</th>
+			<th>member destination</th>
+			<th>member destination-translation</th>
+			<th>translated-address </th>
+		</tr>
 
-    </table>
-    <h2>Sec Rules:</h2>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Source member</th>
-            <th>destination member</th>
-            <th>application member</th>
-            <th>service member</th>
-            <th>action</th>
-        </tr>
+		{% for rule in nat_rules %}
+			<tr>
+				<td>{{ rule[0] }}</td>
+				<td>{{ rule[1] }}</td>
+				<td>{{ rule[2] }}</td>
+				<td>{{ rule[3] }}</td>
+				<td>{{ rule[4] }}</td>
+				<td>{{ rule[5] }}</td>
+			</tr>
+		{% endfor %}
 
-        {% for rule in sec_rules %}
-            <tr>
-                <td>{{ rule[0] }}</td>
-                <td>{{ rule[1] }}</td>
-                <td>{{ rule[2] }}</td>
-                <td>{{ rule[3] }}</td>
-                <td>{{ rule[4] }}</td>
-                <td>{{ rule[5] }}</td>
-            </tr>
-        {% endfor %}
-        
-    </table>
-</body>
-</html>
+	</table>
+{% endblock %}

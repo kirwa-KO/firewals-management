@@ -23,7 +23,7 @@ def home_page():
     names = []
     for line in parsed_yaml_file:
         names.append({'href' : line['Name'], 'link_name' : line['Name']})
-    return render_template('index.html', names=names)
+    return render_template('index.html', names=names, custom_css="index")
 
 @fw_app.route('/<name>')
 def name_page(name):
@@ -35,7 +35,8 @@ def name_page(name):
             try:
                 for value in line['Netops']['Fw']:
                     fws.append({'href': name + '/' + value, 'link_name': value})
-                return render_template('index.html', names=fws)
+                # return render_template('firewall_list.html', names=fws, custom_css="firewall_list")
+                return render_template('firewall_list.html', names=fws, custom_css="index")
             except:
                 return ('Name Have NO Firewell')
     return ('Name Have NO Firewell')
@@ -111,7 +112,7 @@ def fw_page(name, fw):
             nested_rule.append('')
         sec_rules.append(nested_rule)
 
-    return render_template('firewell_info.html', nat_rules=nat_rules, sec_rules=sec_rules)
+    return render_template('firewell_info.html', nat_rules=nat_rules, sec_rules=sec_rules, custom_css="firewall_info")
 
 if __name__ == "__main__":
     fw_app.run(debug=True)
