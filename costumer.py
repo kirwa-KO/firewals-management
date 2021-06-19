@@ -38,8 +38,8 @@ def name_page(name):
                 # return render_template('firewall_list.html', names=fws, custom_css="firewall_list")
                 return render_template('firewall_list.html', names=fws, custom_css="index")
             except:
-                return ('Name Have NO Firewell')
-    return ('Name Have NO Firewell')
+                return render_template('no_firewall_found.html', names=fws, custom_css="no_firewall_found")
+    return render_template('no_firewall_found.html', custom_css="no_firewall_found")
 
 @fw_app.route('/<name>/<fw>')
 def fw_page(name, fw):

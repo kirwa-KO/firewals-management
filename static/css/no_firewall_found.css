@@ -1,0 +1,27 @@
+ul {
+	list-style: none;
+}
+li {
+	background-color: white;
+	margin-bottom: 1rem;
+	padding: 1rem;
+}
+
+li i {
+	margin-right: 1rem;
+	margin-left: 1rem;
+	color: red;
+}
+li i,
+li a {
+	font-size: 1.4rem;
+}
+li a {
+	color: #111925;
+	text-decoration: none;
+}
+
+li a:hover {
+	color: #0366d6;
+	text-decoration: underline;
+}
