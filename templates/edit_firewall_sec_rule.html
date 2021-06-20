@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body %}
+<form action="" class="p-5">
+	<div class="form-group row">
+		<label for="name" class="col-2">Name</label>
+		<input class="form-control col-10" type="text" name="name" value="{{ name }}">
+	</div>
+	<div class="form-group row">
+		<label for="source" class="col-2">Source member</label>
+		<input type="text" class="form-control col-10" name="source" value="{{ source }}">
+	</div>
+	<div class="form-group row">
+		<label for="destination" class="col-2">destination member</label>
+		<input type="text" class="form-control col-10" name="destination" value="{{ destination }}">
+	</div>
+	<div class="form-group row">
+		<label for="application" class="col-2">application member</label>
+		<input type="text" class="form-control col-10" name="application" value="{{ application }}">
+	</div>
+	<div class="form-group row">
+		<label for="action" class="col-2">action</label>
+		<input type="text" class="form-control col-10" name="action" value="{{ action }}">
+	</div>
+	<div class="row">
+		<div class="col-2"> </div>
+		<button class="btn btn-primary">Edit Values</button>
+	</div>
+</form>
+{% endblock %}

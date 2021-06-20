@@ -9,6 +9,7 @@
 			<th>application member</th>
 			<th>service member</th>
 			<th>action</th>
+			<th>Edit</th>
 		</tr>
 
 		{% for rule in sec_rules %}
@@ -19,6 +20,11 @@
 				<td>{{ rule[3] }}</td>
 				<td>{{ rule[4] }}</td>
 				<td>{{ rule[5] }}</td>
+				<td>
+					<a href="{{ edit_link }}?name={{ rule[0] }}&source={{ rule[1] }}&destination={{ rule[2] }}&application={{ rule[3] }}&service={{ rule[4] }}&action={{ rule[5] }}">
+						<button class="btn btn-primary">Edit</button>
+					</a>
+				</td>
 			</tr>
 		{% endfor %}
 		

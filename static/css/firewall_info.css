@@ -7,7 +7,7 @@ h2 {
 table {
 	margin: auto;
 	margin-bottom: 100px;
-	text-align: center;
+	/* text-align: center; */
 	border-spacing: 0;
 }
 th {
