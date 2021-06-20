@@ -133,15 +133,33 @@ def fw_page(name, fw):
 							custom_css="firewall_info",
 							edit_link='/' + name + '/' + fw + '/edit')
 
-@fw_app.route('/<name>/<fw>/edit')
+@fw_app.route('/<name>/<fw>/edit', methods=['POST', 'GET'])
 def fw_edit_page(name, fw):
-	return render_template('edit_firewall_sec_rule.html',
-							name=request.args.get("name"),
-							source=request.args.get("source"),
-							destination=request.args.get("destination"),
-							application=request.args.get("application"),
-							action=request.args.get("action"),
-							)
+	if request.method == 'GET':
+		return render_template('edit_firewall_sec_rule.html',
+								name=request.args.get("name"),
+								source=request.args.get("source"),
+								destination=request.args.get("destination"),
+								application=request.args.get("application"),
+								action=request.args.get("action"),
+								post_link='/' + name + '/' + fw + '/edit'
+								)
+	elif request.method == 'POST':
+		old_name = request.form['old_name']
+		new_name = request.form['name']
+		new_source = request.form['source']
+		new_destination = request.form['destination']
+		new_application = request.form['application']
+		new_action = request.form['action']
+		print('*' * 150)
+		print(old_name)
+		print('=' * 150)
+		print(new_name)
+		print(new_source)
+		print(new_destination)
+		print(new_application)
+		print(new_action)
+		print('*' * 150)
 
 if __name__ == "__main__":
 	fw_app.run(debug=True)
