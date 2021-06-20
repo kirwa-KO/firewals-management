@@ -1,5 +1,5 @@
 import yaml2 as yaml
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 # with open('customers.yml', 'r') as file:
 #     parsed_yaml_file = yaml.load(file, Loader=yaml.FullLoader)
@@ -141,6 +141,7 @@ def fw_edit_page(name, fw):
 								source=request.args.get("source"),
 								destination=request.args.get("destination"),
 								application=request.args.get("application"),
+								service=request.args.get("service"),
 								action=request.args.get("action"),
 								post_link='/' + name + '/' + fw + '/edit'
 								)
@@ -149,17 +150,32 @@ def fw_edit_page(name, fw):
 		new_name = request.form['name']
 		new_source = request.form['source']
 		new_destination = request.form['destination']
-		new_application = request.form['application']
+		new_application = request.form['application'].replace(' ', '').split('|')
+		# remove empty strings
+		while '' in new_application:
+			new_application.remove('')
+		# remove strings that contains just a space
+		while ' ' in new_application:
+			new_application.remove(' ')
+		new_service = request.form['service']
 		new_action = request.form['action']
-		print('*' * 150)
-		print(old_name)
-		print('=' * 150)
-		print(new_name)
-		print(new_source)
-		print(new_destination)
-		print(new_application)
-		print(new_action)
-		print('*' * 150)
+
+		with open('sec-rule.yaml', 'r') as file:
+			parsed_yaml_file = yaml.load(file, Loader=yaml.FullLoader)
+
+		for rule in parsed_yaml_file:
+			if old_name == rule['Name']:
+				rule['Name'] = new_name
+				rule['source']['member'][0] = new_source
+				rule['destination']['member'][0] = new_destination
+				rule['application']['member'] = new_application
+				rule['service']['member'][0] = new_service
+				rule['action'] = new_action
+				with open('sec-rule.yaml', 'w') as file:
+					yaml.dump(parsed_yaml_file, file)
+				break
+
+		return redirect('/' + name + '/' + fw, code=302)
 
 if __name__ == "__main__":
 	fw_app.run(debug=True)
