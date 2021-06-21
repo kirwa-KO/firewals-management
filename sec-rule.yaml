@@ -41,6 +41,7 @@
     - 10.64.120.14/32
     - 10.64.120.15/3290
     - proton
+    - whatever
   source-user:
     member:
     - any
