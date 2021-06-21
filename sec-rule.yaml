@@ -8,6 +8,7 @@
     - icmp
     - mysql
     - ping
+    - kirwa
   category:
     member:
     - any
@@ -15,6 +16,9 @@
   destination:
     member:
     - 100.103.29.190/32
+    - 10.64.120.13/32
+    - 10.64.120.14/32
+    - 10.64.120.15/32
   disabled: .nan
   from:
     member:
@@ -33,6 +37,10 @@
   source:
     member:
     - any
+    - 10.64.120.13/32
+    - 10.64.120.14/32
+    - 10.64.120.15/3290
+    - proton
   source-user:
     member:
     - any

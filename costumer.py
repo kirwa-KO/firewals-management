@@ -13,7 +13,14 @@ from flask import Flask, render_template, request, redirect
 #     except KeyError:
 #         pass
 		
-
+def remove_spacing_string_and_empty(the_list):
+	# remove empty strings
+	while '' in the_list:
+		the_list.remove('')
+	# remove strings that contains just a space
+	while ' ' in the_list:
+		the_list.remove(' ')
+	return the_list
 
 def append_set_rules_data_with_filter(nested_rule, rule, client_name, apply_filter):
 
@@ -25,11 +32,19 @@ def append_set_rules_data_with_filter(nested_rule, rule, client_name, apply_filt
 	except:
 		nested_rule.append('')
 	try:
-		nested_rule.append(rule['source']['member'][0])
+		source_string = ''
+		for source in rule['source']['member']:
+			source_string += source + ', '
+		# nested_rule.append(rule['source']['member'][0])
+		nested_rule.append(source_string)
 	except:
 		nested_rule.append('')
 	try:
-		nested_rule.append(rule['destination']['member'][0])
+		destination_string = ''
+		for destination in rule['destination']['member']:
+			destination_string += destination + ', '
+		# nested_rule.append(rule['destination']['member'][0])
+		nested_rule.append(destination_string)
 	except:
 		nested_rule.append('')
 	try:
@@ -145,18 +160,20 @@ def fw_edit_page(name, fw):
 								action=request.args.get("action"),
 								post_link='/' + name + '/' + fw + '/edit'
 								)
+
 	elif request.method == 'POST':
 		old_name = request.form['old_name']
 		new_name = request.form['name']
-		new_source = request.form['source']
-		new_destination = request.form['destination']
+
+		new_source = request.form['source'].replace(' ', '').split(',')
+		new_source = remove_spacing_string_and_empty(new_source)
+		
+		new_destination = request.form['destination'].replace(' ', '').split(',')
+		new_destination = remove_spacing_string_and_empty(new_destination)
+
 		new_application = request.form['application'].replace(' ', '').split('|')
-		# remove empty strings
-		while '' in new_application:
-			new_application.remove('')
-		# remove strings that contains just a space
-		while ' ' in new_application:
-			new_application.remove(' ')
+		new_application = remove_spacing_string_and_empty(new_application)
+
 		new_service = request.form['service']
 		new_action = request.form['action']
 
@@ -166,8 +183,8 @@ def fw_edit_page(name, fw):
 		for rule in parsed_yaml_file:
 			if old_name == rule['Name']:
 				rule['Name'] = new_name
-				rule['source']['member'][0] = new_source
-				rule['destination']['member'][0] = new_destination
+				rule['source']['member']= new_source
+				rule['destination']['member'] = new_destination
 				rule['application']['member'] = new_application
 				rule['service']['member'][0] = new_service
 				rule['action'] = new_action
