@@ -22,10 +22,38 @@ def remove_spacing_string_and_empty(the_list):
 		the_list.remove(' ')
 	return the_list
 
-def append_set_rules_data_with_filter(nested_rule, rule, client_name, apply_filter):
+
+def append_nat_rules_data_with_filter(nested_rule, rule, client_name, apply_filter):
 
 	if apply_filter == True and client_name not in rule['Name'].lower():
-		print(rule['Name'])
+		return
+	try:
+		nested_rule.append(rule['Name'])
+	except:
+		nested_rule.append('')
+	try:
+		nested_rule.append(rule['source-translation']['dynamic-ip-and-port']['translated-address']['member'][0])
+	except:
+		nested_rule.append('')
+	try:
+		nested_rule.append(rule['source']['member'][0])
+	except:
+		nested_rule.append('')
+	try:
+		nested_rule.append(rule['destination']['member'][0])
+	except:
+		nested_rule.append('')
+	try:
+		nested_rule.append(rule['service'])
+	except:
+		nested_rule.append('')
+	try:
+		nested_rule.append(rule['destination-translation']['translated-address'])
+	except:
+		nested_rule.append('')
+	
+def append_set_rules_data_with_filter(nested_rule, rule, client_name, apply_filter):
+	if apply_filter == True and client_name not in rule['Name'].lower():
 		return
 	try:
 		nested_rule.append(rule['Name'])
@@ -95,37 +123,18 @@ def fw_page(name, fw):
 	with open('nat-rule.yaml', 'r') as file:
 		parsed_yaml_file = yaml.load(file, Loader=yaml.FullLoader)
 	nat_rules = []
+
+	# the list of filtered firewals files
+	filtered_firewals = ["orfw01"]
 	
 	for rule in parsed_yaml_file:
 		nested_rule = []
-		try:
-			nested_rule.append(rule['Name'])
-		except:
-			nested_rule.append('')
-		try:
-			nested_rule.append(rule['source-translation']['dynamic-ip-and-port']['translated-address']['member'][0])
-		except:
-			nested_rule.append('')
-		try:
-			nested_rule.append(rule['source']['member'][0])
-		except:
-			nested_rule.append('')
-		try:
-			nested_rule.append(rule['destination']['member'][0])
-		except:
-			nested_rule.append('')
-		try:
-			nested_rule.append(rule['service'])
-		except:
-			nested_rule.append('')
-		try:
-			nested_rule.append(rule['destination-translation']['translated-address'])
-		except:
-			nested_rule.append('')
-		nat_rules.append(nested_rule)
-
-
-	filtered_firewals = ["orfw01"]
+		if fw in filtered_firewals:
+			append_nat_rules_data_with_filter(nested_rule, rule, name, True)
+		else:
+			append_nat_rules_data_with_filter(nested_rule, rule, name, False)
+		if len(nested_rule) > 0:
+			nat_rules.append(nested_rule)
 
 	with open('sec-rule.yaml', 'r') as file:
 		parsed_yaml_file = yaml.load(file, Loader=yaml.FullLoader)
